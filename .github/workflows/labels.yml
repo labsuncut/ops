@@ -1,0 +1,29 @@
+# Creates the stage labels used to track every site. Runs whenever this file changes,
+# or by hand from the Actions tab ("Run workflow").
+name: Set up labels
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/labels.yml]
+  workflow_dispatch:
+permissions:
+  issues: write
+jobs:
+  labels:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - run: |
+          make() { gh label create "$1" --color "$2" --description "$3" --force; }
+          make "stage: lead"       "ededed" "Spotted a business, nothing built yet"
+          make "stage: intake"     "c5def5" "Claude researched it; filling gaps"
+          make "stage: build"      "0e8a16" "Claude is building the site"
+          make "stage: review"     "fbca04" "Preview ready; a person checks it"
+          make "stage: pitch"      "d93f0b" "Pitch sent to the owner"
+          make "stage: sold"       "5319e7" "Paid; swapping in real content and domain"
+          make "stage: care"       "1d76db" "Live on monthly plan"
+          make "stage: not now"    "bfbfbf" "Owner said no or not yet; keep the demo"
+          make "ready-to-build"    "0e8a16" "Claude can build this without asking"
+          make "client edit"       "c2e0c6" "A change a paying client asked for"

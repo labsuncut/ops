@@ -1,0 +1,64 @@
+name: New site
+description: A business we want to build a website for
+title: "Site: <business name>, <town>"
+labels: ["stage: lead"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill in what you know. Leave the rest blank; Claude looks up the public info and marks what's missing.
+  - type: input
+    id: name
+    attributes:
+      label: Business name
+    validations:
+      required: true
+  - type: input
+    id: town
+    attributes:
+      label: Town or address
+    validations:
+      required: true
+  - type: input
+    id: kind
+    attributes:
+      label: What kind of business
+      placeholder: Barber, pizza place, plumber, nail salon...
+  - type: textarea
+    id: links
+    attributes:
+      label: Links we already have
+      description: Google Maps listing, Instagram, Facebook, Yelp, old website
+  - type: input
+    id: phone
+    attributes:
+      label: Phone
+  - type: textarea
+    id: services
+    attributes:
+      label: What they sell or do
+  - type: textarea
+    id: hours
+    attributes:
+      label: Opening hours
+  - type: input
+    id: contact
+    attributes:
+      label: Owner or contact person (if known)
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything useful, e.g. "owner is at the shop on Saturdays", "their current site is broken"
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Site checklist
+      options:
+        - label: Intake checked, gaps filled
+        - label: Site built, preview link posted
+        - label: Preview checked on a phone and approved
+        - label: Pitch sent
+        - label: Paid, logo and photos collected
+        - label: Real content swapped in, domain connected
+        - label: Live on their domain with HTTPS
